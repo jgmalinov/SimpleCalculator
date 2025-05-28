@@ -20,7 +20,7 @@ namespace SimpleCalculator.Pages
         {
             if (action == "add")
             {
-                ViewData["Result"] =  firstNumber + secondNumber;
+                ViewData["Result"] = firstNumber + secondNumber;
             }
             else if (action == "subtract")
             {
@@ -34,15 +34,31 @@ namespace SimpleCalculator.Pages
             {
                 if (secondNumber != 0)
                 {
-                    ViewData["Result"] = (double) firstNumber / secondNumber;
+                    ViewData["Result"] = (double)firstNumber / secondNumber;
                 }
                 else
                 {
                     ViewData["Result"] = "Cannot divide by zero";
                 }
             }
-            else 
-            { 
+            else if (action == "root")
+            {
+                if (secondNumber == 0)
+                {
+                    ViewData["Result"] = "Root value cannot be zero";
+                }
+                else if (firstNumber < 0 && secondNumber % 2 == 0)
+                {
+                    ViewData["Result"] = "Cannot take even root of a negative number";
+                }
+                else
+                {
+                    double result = Math.Pow(firstNumber, 1.0 / secondNumber);
+                    ViewData["Result"] = result;
+                }
+            }
+            else
+            {
                 ViewData["Result"] = "Invalid operation";
             }
         }
