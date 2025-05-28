@@ -1,0 +1,48 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Simple Calculator</h1>
+    <form method="post" id="calculatorform">
+        <div class="form-group">
+            <label for="action">Action</label>
+            <select class="form-control" id="action" name="action" required>
+                <option value="">Select an action</option>
+                <option value="add">Add</option>
+                <option value="subtract">Subtract</option>
+                <option value="multiply">Multiply</option>
+                <option value="divide">Divide</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="firstNumber">First Number:</label>
+            <input type="number" class="form-control" id="firstNumber" name="firstNumber" required>
+        </div>
+        <div class="form-group">
+            <label for="secondNumber">Second Number:</label>
+            <input type="number" class="form-control" id="secondNumber" name="secondNumber" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Calculate</button>
+        <button type="reset" class="btn btn-secondary">Reset</button>
+        <div class="form-group"> 
+            @if (ViewData["Result"] is not null)
+            {
+                <div id="resultContainer">
+                    <h3>RESULT</h3>
+                    <div class="display-2 text-info" id="result">@ViewData["Result"]</div>
+                </div>
+            }
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    <script>
+        document.getElementById("calculatorform").addEventListener("reset", (e) => {
+            document.getElementById("resultContainer").hidden = true;
+        })
+    </script>
+}
